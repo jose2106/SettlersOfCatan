@@ -128,7 +128,16 @@ def ReorganizarTablero():
 
         
             contadorG = contador1 + contador2 + contador3 + contador4 + contador5 + contador6
-                              
+
+    #Donde hay seis recorrer el numero para dejar sin ficha el desierto
+    i=0
+    for index in rarray:
+         if index != 6:
+            i+=1
+            print(i)
+         else:
+            print("Aqui hay un 6")
+        
     print(rarray)
     
     
@@ -167,7 +176,7 @@ def ReorganizarTablero():
     GT = Grafo() 
 
 
-    #Conexiones entre vertices
+    #Conexion vertices y terrenos
 
     GT.conecta(rarray[0],"1")
     GT.conecta(rarray[0],"2")
@@ -336,6 +345,10 @@ def ReorganizarTablero():
     GT.conecta(rarray[18],"53")
 
     GT.conecta(rarray[18],"54")
+
+    #Conexiones entre vertices
+
+    
 
     #Vecinos del boton
     
