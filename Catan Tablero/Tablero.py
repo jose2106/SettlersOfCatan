@@ -198,6 +198,7 @@ def ReorganizarTablero():
 
     #Donde hay seis recorrer el numero para dejar sin ficha el desierto
     N_F_O = []
+    
     #Arreglo de fichas ordenadas
     F_O = [f_once, f_cuatro, f_doce, f_ocho, f_tres, f_nueve, f_once, f_seis, f_diez, f_diez, f_nueve, f_cinco, f_cinco, f_cuatro, f_ocho, f_dos, f_tres, f_seis]
 
@@ -232,9 +233,7 @@ def ReorganizarTablero():
    
 
     for w in range(len(rarray)):
-
-        
-        
+ 
         if rarray[w] == 6:
                evitar_desierto(None)
         try: 
@@ -438,7 +437,7 @@ def ReorganizarTablero():
     #Vecinos del boton
     
     def valorB(i,e):
-        
+        print(i)
         l_terrenos = []
         for x in GT.vecinos[e]:
             if x == 6:
@@ -477,6 +476,7 @@ def ReorganizarTablero():
 BotonTablero = Button(text="Nuevo Juego", command=ReorganizarTablero, relief = "flat")
 BotonTablero.pack()
 BotonTablero.place(x=361, y=20)
+window.mainloop()
 
     
 
