@@ -69,20 +69,20 @@ botones = {}
 
 #Eventos de click
 
-def key(event):
-    print ("pressed"), repr(event.char)
+#def key(event):
+#    print ("pressed"), repr(event.char)
 
-def callback(event):
-    Ftablero.focus_set()
-    C_F_X.append(event.x)
-    print(C_F_X)
-    C_F_Y.append(event.y)
-    print(C_F_Y)
-    print ("Click en: ", event.x, event.y)
+#def callback(event):
+ #   Ftablero.focus_set()
+ #   C_F_X.append(event.x)
+  #  print(C_F_X)
+   # C_F_Y.append(event.y)
+    #print(C_F_Y)
+    #print ("Click en: ", event.x, event.y)
 
 
-Ftablero.bind("<Key>", key)
-Ftablero.bind("<Button-1>", callback)
+#Ftablero.bind("<Key>", key)
+#Ftablero.bind("<Button-1>", callback)
 
 
 def ReorganizarTablero():
