@@ -4,17 +4,39 @@ import random
 from Clase_Grafo import *
 from functools import partial        
 
-#Super Hello world
-
 #Inicializacion de la ventana
 window = Tk()
 
 window.title("Settlers of Catan")
-Ftablero = Canvas(window, width=800,height=720,bg="BLUE")
-window.geometry("800x720+640+0")
+Ftablero = Canvas(window, width=800,height=720,bg="#46eae4")
+FGR = Canvas(window, width=480,height=720,bg="#f4c542")
+window.geometry("1280x720+0+0")
 Ftablero.place(x=0,y=0)
+FGR.place(x=800,y=0)
 
 #Desclarar imagenes y resampleos
+Boton= PhotoImage(file="Vertice.gif")
+Vertice = Boton.subsample(9,9)
+fichados = PhotoImage(file="f_dos.png")
+fichatres = PhotoImage(file="f_tres.png")
+fichacuatro = PhotoImage(file="f_cuatro.png")
+fichacinco = PhotoImage(file="f_cinco.png")
+fichaseis = PhotoImage(file="f_seis.png")
+fichaocho = PhotoImage(file="f_ocho.png")
+fichanueve = PhotoImage(file="f_nueve.png")
+fichadiez = PhotoImage(file="f_diez.png")
+fichaonce = PhotoImage(file="f_once.png")
+fichadoce = PhotoImage(file="f_doce.png")
+f_dos = fichados.subsample(8,8)
+f_tres = fichatres.subsample(8,8)
+f_cuatro = fichacuatro.subsample(8,8)
+f_cinco = fichacinco.subsample(8,8)
+f_seis = fichaseis.subsample(8,8)
+f_ocho = fichaocho.subsample(8,8)
+f_nueve = fichanueve.subsample(8,8)
+f_diez = fichadiez.subsample(8,8)
+f_once = fichaonce.subsample(8,8)
+f_doce = fichadoce.subsample(8,8)
 Bosque = PhotoImage(file="Bosque.png")
 BosqueSub = Bosque.subsample(6,6)
 Colinas = PhotoImage(file="Colinas.png")
@@ -35,6 +57,13 @@ C_X = [368, 431, 272, 336, 464, 528, 179, 243, 367, 432, 560, 621, 148, 272, 337
 #Coordenadas Y
 C_Y = [83, 81, 138, 136, 136, 136, 194, 192, 191, 191, 190, 192, 249, 247, 247, 247, 245, 244, 302, 302, 301, 303, 302, 300, 357, 354, 356, 357, 357, 357, 412, 411, 411, 413, 410, 412, 467, 467, 465, 467, 467, 467, 522, 522, 520, 521, 523, 522, 577, 576, 576, 578, 631, 631]
 
+#Centros de fichas
+C_F_X = [400, 304, 494, 210, 398, 591, 303, 496, 207, 401, 591, 304, 497, 209, 399, 591, 305, 496, 400]
+C_F_Y = [133, 190, 190, 247, 245, 246, 302, 298, 355, 359, 352, 410, 413, 466, 468, 464, 517, 519, 574]
+
+
+
+
 #Dic de bot.
 botones = {}
 
@@ -45,6 +74,10 @@ def key(event):
 
 def callback(event):
     Ftablero.focus_set()
+    C_F_X.append(event.x)
+    print(C_F_X)
+    C_F_Y.append(event.y)
+    print(C_F_Y)
     print ("Click en: ", event.x, event.y)
 
 
@@ -129,17 +162,9 @@ def ReorganizarTablero():
         
             contadorG = contador1 + contador2 + contador3 + contador4 + contador5 + contador6
 
-    #Donde hay seis recorrer el numero para dejar sin ficha el desierto
-    i=0
-    for index in rarray:
-         if index != 6:
-            i+=1
-            print(i)
-         else:
-            print("Aqui hay un 6")
-        
+    print("Arreglo global de los terrenos del tablero")            
     print(rarray)
-    
+    print("")
     
 
 
@@ -170,6 +195,66 @@ def ReorganizarTablero():
     Ftablero.create_image(495,525,image=Terrenos[rarray[17]])
    
     Ftablero.create_image(400,580,image=Terrenos[rarray[18]])
+
+    #Donde hay seis recorrer el numero para dejar sin ficha el desierto
+    N_F_O = []
+    #Arreglo de fichas ordenadas
+    F_O = [f_once, f_cuatro, f_doce, f_ocho, f_tres, f_nueve, f_once, f_seis, f_diez, f_diez, f_nueve, f_cinco, f_cinco, f_cuatro, f_ocho, f_dos, f_tres, f_seis]
+
+    #Numero de ficha de cada pieza (hexagono)
+    F_Temp = {}
+    F_T = {}
+
+
+###################----Encapsulado--###########################
+    def evitar_desierto(*args):
+        N_F_O.append(*args)
+        for i in range(len(N_F_O)):
+            Ftablero.create_image(C_F_X[i], C_F_Y[i], image= N_F_O[i])
+
+            switcher = {
+                "pyimage13": 2 ,
+                "pyimage14": 3 ,
+                "pyimage15": 4 ,
+                "pyimage16": 5 ,
+                "pyimage17": 6 ,
+                "pyimage18": 8 ,
+                "pyimage19" : 9 ,
+                "pyimage20": 10 ,
+                "pyimage21": 11 ,
+                "pyimage22" : 12 
+            }
+            F_T[switcher.get("{0}".format(N_F_O[i]))] = rarray[i] 
+            
+
+   
+
+   
+
+    for w in range(len(rarray)):
+
+        
+        
+        if rarray[w] == 6:
+               evitar_desierto(None)
+        try: 
+            evitar_desierto(F_O[w])
+        except IndexError:
+            print("")
+###################################################################
+
+    print("Valor para dados - Terrenos (rarray)")
+    print(F_T)
+        
+
+    
+           
+               
+           
+    
+
+       
+            
 
     #Grafo de los terrenos
 
@@ -379,21 +464,25 @@ def ReorganizarTablero():
     
     def generate_buttons():
         for i in range(len(C_X)):
-            botones["Boton{0}".format(i)] = Button(width = 1, height = 1,background = "yellow",relief = "flat",cursor = "crosshair", command = partial(valorB, "Boton{0}".format(i+1), str(i+1))) #Partial declara funcion con argumento sin llamarla
+            botones["Boton{0}".format(i)] = Button(width = 9, height = 9,background = "black", image=Vertice, relief = "flat",cursor = "crosshair", command = partial(valorB, "Boton{0}".format(i+1), str(i+1))) #Partial declara funcion con argumento sin llamarla
             #Poner imagenes gif mas pequeñas en botones 
         for z in range(len(C_X)):
             botones["Boton{0}".format(z)].pack()
             #Pos. de botones
-            botones["Boton{0}".format(z)].place(x=C_X[z]-5, y=C_Y[z]-10)
+            botones["Boton{0}".format(z)].place(x=C_X[z]-6, y=C_Y[z]-5)
             
     
-    generate_buttons() 
-    
+    generate_buttons()
 
-
-    
-BotonTablero = Button(text="Reorganizar Tablero", command=ReorganizarTablero)
+BotonTablero = Button(text="Nuevo Juego", command=ReorganizarTablero, relief = "flat")
 BotonTablero.pack()
+BotonTablero.place(x=361, y=20)
+
+    
+
+
+    
+
 
 
 
