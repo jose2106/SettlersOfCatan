@@ -1,6 +1,6 @@
 from tkinter import *
 import tkinter as tk
-import random
+from Generator import * 
 from Clase_Grafo import *
 from functools import partial        
 
@@ -61,6 +61,8 @@ C_Y = [83, 81, 138, 136, 136, 136, 194, 192, 191, 191, 190, 192, 249, 247, 247, 
 C_F_X = [400, 304, 494, 210, 398, 591, 303, 496, 207, 401, 591, 304, 497, 209, 399, 591, 305, 496, 400]
 C_F_Y = [133, 190, 190, 247, 245, 246, 302, 298, 355, 359, 352, 410, 413, 466, 468, 464, 517, 519, 574]
 
+ncx = {'Boton1': 368, 'Boton2': 431, 'Boton3': 272, 'Boton4': 336, 'Boton5': 464, 'Boton6': 528, 'Boton7': 179, 'Boton8': 243, 'Boton9': 367, 'Boton10': 432, 'Boton11': 560, 'Boton12': 621, 'Boton13': 148, 'Boton14': 272, 'Boton15': 337, 'Boton16': 463, 'Boton17': 528, 'Boton18': 653, 'Boton19': 176, 'Boton20': 241, 'Boton21': 366, 'Boton22': 433, 'Boton23': 558, 'Boton24': 623, 'Boton25': 147, 'Boton26': 273, 'Boton27': 337, 'Boton28': 461, 'Boton29': 526, 'Boton30': 656, 'Boton31': 178, 'Boton32': 240, 'Boton33': 368, 'Boton34': 432, 'Boton35': 559, 'Boton36': 624, 'Boton37': 146, 'Boton38': 274, 'Boton39': 336, 'Boton40': 463, 'Boton41': 527, 'Boton42': 654, 'Boton43': 177, 'Boton44': 241, 'Boton45': 369, 'Boton46': 431, 'Boton47': 559, 'Boton48': 622, 'Boton49': 273, 'Boton50': 336, 'Boton51': 464, 'Boton52': 527, 'Boton53': 369, 'Boton54': 432}
+ncy = {'Boton1': 83, 'Boton2': 81, 'Boton3': 138, 'Boton4': 136, 'Boton5': 136, 'Boton6': 136, 'Boton7': 194, 'Boton8': 192, 'Boton9': 191, 'Boton10': 191, 'Boton11': 190, 'Boton12': 192, 'Boton13': 249, 'Boton14': 247, 'Boton15': 247, 'Boton16': 247, 'Boton17': 245, 'Boton18': 244, 'Boton19': 302, 'Boton20': 302, 'Boton21': 301, 'Boton22': 303, 'Boton23': 302, 'Boton24': 300, 'Boton25': 357, 'Boton26': 354, 'Boton27': 356, 'Boton28': 357, 'Boton29': 357, 'Boton30': 357, 'Boton31': 412, 'Boton32': 411, 'Boton33': 411, 'Boton34': 413, 'Boton35': 410, 'Boton36': 412, 'Boton37': 467, 'Boton38': 467, 'Boton39': 465, 'Boton40': 467, 'Boton41': 467, 'Boton42': 467, 'Boton43': 522, 'Boton44': 522, 'Boton45': 520, 'Boton46': 521, 'Boton47': 523, 'Boton48': 522, 'Boton49': 577, 'Boton50': 576, 'Boton51': 576, 'Boton52': 578, 'Boton53': 631, 'Boton54': 631}
 
 
 
@@ -70,7 +72,7 @@ botones = {}
 #Eventos de click
 
 #def key(event):
-#    print ("pressed"), repr(event.char)
+ #   print ("pressed"), repr(event.char)
 
 #def callback(event):
  #   Ftablero.focus_set()
@@ -124,12 +126,16 @@ def ReorganizarTablero():
     contadorG = 0
      
     rarray = []
+    i = 0
+    j = 3
     
     for n in range(19):
     
         while contadorG !=19:
-            r = random.randint(1,6)
-            
+            i += 1
+            j += 1
+            r = Generator(a = i, c = j/2, low = 1, high = 6, rounded = True).throw()
+            print(r)
             if r==1 and contador1 !=4:
                 contador1+=1
                 rarray.append(r+contador1S)
@@ -248,10 +254,6 @@ def ReorganizarTablero():
 
     
            
-               
-           
-    
-
        
             
 
@@ -432,6 +434,203 @@ def ReorganizarTablero():
 
     #Conexiones entre vertices
 
+    GT.conecta("Boton1","Boton2")
+    GT.conecta("Boton1","Boton4")
+
+    GT.conecta("Boton2","Boton1")
+    GT.conecta("Boton2","Boton5")
+
+    GT.conecta("Boton3","Boton4")
+    GT.conecta("Boton3","Boton8")
+
+    GT.conecta("Boton4","Boton1")
+    GT.conecta("Boton4","Boton3")
+    GT.conecta("Boton4","Boton9")
+
+    GT.conecta("Boton5","Boton6")
+    GT.conecta("Boton5","Boton2")
+    GT.conecta("Boton5","Boton10")
+
+    GT.conecta("Boton6","Boton5")
+    GT.conecta("Boton6","Boton11")
+
+    GT.conecta("Boton7","Boton8")
+    GT.conecta("Boton7","Boton13")
+
+    GT.conecta("Boton8","Boton7")
+    GT.conecta("Boton8","Boton14")
+
+    GT.conecta("Boton9","Boton4")
+    GT.conecta("Boton9","Boton10")
+    GT.conecta("Boton9","Boton15")
+
+    GT.conecta("Boton10","Boton9")
+    GT.conecta("Boton10","Boton5")
+    GT.conecta("Boton10","Boton16")
+
+    GT.conecta("Boton11","Boton12")
+    GT.conecta("Boton11","Boton6")
+    GT.conecta("Boton11","Boton17")
+
+    GT.conecta("Boton12","Boton11")
+    GT.conecta("Boton12","Boton18")
+
+    GT.conecta("Boton13","Boton7")
+    GT.conecta("Boton13","Boton19")
+
+    GT.conecta("Boton14","Boton15")
+    GT.conecta("Boton14","Boton8")
+    GT.conecta("Boton14","Boton20")
+
+    GT.conecta("Boton15","Boton14")
+    GT.conecta("Boton15","Boton9")
+    GT.conecta("Boton15","Boton21")
+
+    GT.conecta("Boton16","Boton22")
+    GT.conecta("Boton16","Boton10")
+    GT.conecta("Boton16","Boton17")
+
+    GT.conecta("Boton17","Boton16")
+    GT.conecta("Boton17","Boton11")
+    GT.conecta("Boton17","Boton23")
+
+    GT.conecta("Boton18","Boton24")
+    GT.conecta("Boton18","Boton12")
+
+    GT.conecta("Boton19","Boton25")
+    GT.conecta("Boton19","Boton13")
+    GT.conecta("Boton19","Boton20")
+
+    GT.conecta("Boton20","Boton26")
+    GT.conecta("Boton20","Boton14")
+    GT.conecta("Boton20","Boton19")
+
+    GT.conecta("Boton21","Boton27")
+    GT.conecta("Boton21","Boton15")
+    GT.conecta("Boton21","Boton22")
+
+    GT.conecta("Boton22","Boton21")
+    GT.conecta("Boton22","Boton28")
+    GT.conecta("Boton22","Boton16")
+    
+    GT.conecta("Boton23","Boton17")
+    GT.conecta("Boton23","Boton29")
+
+    GT.conecta("Boton24","Boton23")
+    GT.conecta("Boton24","Boton30")
+    GT.conecta("Boton24","Boton18")
+
+    GT.conecta("Boton25","Boton31")
+    GT.conecta("Boton25","Boton19")
+
+    GT.conecta("Boton26","Boton27")
+    GT.conecta("Boton26","Boton32")
+    GT.conecta("Boton26","Boton20")
+
+    GT.conecta("Boton27","Boton21")
+    GT.conecta("Boton27","Boton33")
+    GT.conecta("Boton27","Boton26")
+
+    GT.conecta("Boton28","Boton29")
+    GT.conecta("Boton28","Boton34")
+    GT.conecta("Boton28","Boton22")
+
+    GT.conecta("Boton29","Boton28")
+    GT.conecta("Boton29","Boton23")
+    GT.conecta("Boton29","Boton35")
+
+    GT.conecta("Boton30","Boton36")
+    GT.conecta("Boton30","Boton24")
+
+    GT.conecta("Boton31","Boton32")
+    GT.conecta("Boton31","Boton25")
+    GT.conecta("Boton31","Boton37")
+
+    GT.conecta("Boton32","Boton31")
+    GT.conecta("Boton32","Boton38")
+    GT.conecta("Boton32","Boton26")
+
+    GT.conecta("Boton33","Boton34")
+    GT.conecta("Boton33","Boton39")
+    GT.conecta("Boton33","Boton27")
+
+    GT.conecta("Boton34","Boton33")
+    GT.conecta("Boton34","Boton40")
+    GT.conecta("Boton34","Boton28")
+
+    GT.conecta("Boton35","Boton36")
+    GT.conecta("Boton35","Boton41")
+    GT.conecta("Boton35","Boton29")
+
+    GT.conecta("Boton36","Boton35")
+    GT.conecta("Boton36","Boton42")
+    GT.conecta("Boton36","Boton30")
+
+    GT.conecta("Boton37","Boton43")
+    GT.conecta("Boton37","Boton31")
+
+    GT.conecta("Boton38","Boton39")
+    GT.conecta("Boton38","Boton44")
+    GT.conecta("Boton38","Boton32")
+
+    GT.conecta("Boton39","Boton38")
+    GT.conecta("Boton39","Boton45")
+    GT.conecta("Boton39","Boton33")
+
+    GT.conecta("Boton40","Boton41")
+    GT.conecta("Boton40","Boton46")
+    GT.conecta("Boton40","Boton34")
+
+    GT.conecta("Boton41","Boton40")
+    GT.conecta("Boton41","Boton47")
+    GT.conecta("Boton41","Boton35")
+
+    GT.conecta("Boton42","Boton48")
+    GT.conecta("Boton42","Boton36")
+
+    GT.conecta("Boton43","Boton37")
+    GT.conecta("Boton43","Boton44")
+
+    GT.conecta("Boton44","Boton43")
+    GT.conecta("Boton44","Boton49")
+    GT.conecta("Boton44","Boton38")
+
+    GT.conecta("Boton45","Boton39")
+    GT.conecta("Boton45","Boton46")
+    GT.conecta("Boton45","Boton50")
+
+    GT.conecta("Boton46","Boton45")
+    GT.conecta("Boton46","Boton40")
+    GT.conecta("Boton46","Boton51")
+
+    GT.conecta("Boton47","Boton48")
+    GT.conecta("Boton47","Boton41")
+    GT.conecta("Boton47","Boton52")
+
+    GT.conecta("Boton48","Boton42")
+    GT.conecta("Boton48","Boton47")
+
+    GT.conecta("Boton49","Boton50")
+    GT.conecta("Boton49","Boton44")
+
+    GT.conecta("Boton50","Boton45")
+    GT.conecta("Boton50","Boton49")
+    GT.conecta("Boton50","Boton53")
+
+    GT.conecta("Boton51","Boton46")
+    GT.conecta("Boton51","Boton52")
+    GT.conecta("Boton51","Boton54")
+
+    GT.conecta("Boton52","Boton51")
+    GT.conecta("Boton52","Boton47")
+
+    GT.conecta("Boton53","Boton50")
+    GT.conecta("Boton53","Boton54")
+
+    GT.conecta("Boton54","Boton53")
+    GT.conecta("Boton54","Boton51")
+        
+
     
 
     #Vecinos del boton
@@ -464,11 +663,46 @@ def ReorganizarTablero():
     def generate_buttons():
         for i in range(len(C_X)):
             botones["Boton{0}".format(i)] = Button(width = 9, height = 9,background = "black", image=Vertice, relief = "flat",cursor = "crosshair", command = partial(valorB, "Boton{0}".format(i+1), str(i+1))) #Partial declara funcion con argumento sin llamarla
-            #Poner imagenes gif mas pequeñas en botones 
+
+
+        #Poner imagenes gif mas pequeñas en botones 
         for z in range(len(C_X)):
             botones["Boton{0}".format(z)].pack()
             #Pos. de botones
             botones["Boton{0}".format(z)].place(x=C_X[z]-6, y=C_Y[z]-5)
+
+    
+    def conexionesB(*args):
+        return str(args[0])
+
+    def BotonP(bp):
+        return str(bp)
+            
+    
+
+    for i in range(len(C_X)):
+        try:
+            for x in GT.vecinos["Boton{0}".format(i+1)]:
+                print("")
+                bp = "Boton{}".format(i+1)
+                Ftablero.create_line(ncx[BotonP(bp)],ncy[BotonP(bp)],ncx[conexionesB(x)],ncy[conexionesB(x)], fill="white",width=3)
+                
+            pass
+            
+        except KeyError:
+            pass
+
+
+
+    
+    
+               
+
+
+
+
+
+    
             
     
     generate_buttons()
